@@ -17,25 +17,25 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function repeater(str, options) {
   
-  let a = str.toString();
+  let a = str;
   console.log('1 - ' + a);
-  let b = 0;
+  let b = 1;
   if ('repeatTimes' in options) {
-    b = options.repeatTimes.valueOf();
+    b = options.repeatTimes;
     console.log('2 - ' + b);
   };
   let c = '+';
   if ('separator' in options) {
-   c = options.separator.toString();
+   c = options.separator;
     console.log('3 - ' + c);
   };
   let d = '';
   if ('addition' in options) {
-    d = options.addition.toString();
+    d = options.addition;
   };
-  let e = 0; 
+  let e = 1; 
   if ('additionRepeatTimes' in options) {
-    e = options.additionRepeatTimes.valueOf();
+    e = options.additionRepeatTimes;
   }
   let f ='|'; 
   if ('additionSeparator' in options) {
@@ -46,12 +46,17 @@ function repeater(str, options) {
       add = `${d}`;
       console.log('4 - ' + add);
     } else if (e>1) {
-      add = d+(f+d).repeat(e);
+      add = d+((f+d).repeat(e-1));
       console.log('5 - ' + add);
-    }
+    };
   
     console.log('6 - ' + add);
-    let result = a+add+(c+a+`${add}`).repeat(b-1);
+    let result;
+    if (b === 0 || b === 1) {
+      result = a+add;
+    } else if (b>1) {
+      result = a+add+(c+a+`${add}`).repeat(b-1);
+    };
     return result;
   }
 
