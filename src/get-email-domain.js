@@ -12,7 +12,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function getEmailDomain(email) {
   let symbol = email.lastIndexOf('@'); 
-  return email.substr(symbol+1);
+  return email.substring(symbol+1);
   
 }
 console.log(getEmailDomain('prettyandsimple@example.com'));

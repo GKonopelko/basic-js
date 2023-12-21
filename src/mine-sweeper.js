@@ -23,10 +23,59 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
-}
+function minesweeper(matrix) {
+  let newArr = JSON.parse(JSON.stringify(matrix));
+
+  for (let i = 0; i < newArr.length; i++) {
+    for (let j = 0; j < newArr[i].length; j++) {
+        newArr[i][j]=0;
+    }
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      console.log(`matrix ${[i]} ${[j]}`);
+        
+      if (i>0 && j>0 && matrix[i-1][j-1] == true) {
+        newArr[i][j] += 1;
+        console.log(`newArr1 ${newArr}`);
+        };
+        if (i>0 && matrix[i-1][j] == true) {
+          newArr[i][j] += 1;
+          console.log(`newArr1 ${newArr}`);
+        };
+        if (i>0 && j < matrix.length && matrix[i-1][j+1] == true) {
+          newArr[i][j] += 1;
+          console.log(`newArr1 ${newArr}`);
+        };
+
+        if (j>0 && matrix[i][j-1] == true) {
+          newArr[i][j] += 1;
+          console.log(`newArr1 ${newArr}`);
+        };
+        
+        if (j < matrix.length-1 && matrix[i][j+1] == true) {
+          newArr[i][j] += 1;
+          console.log(`newArr1 ${newArr}`);
+        };
+
+        if (i<matrix.length-1 && j>0 && matrix[i+1][j-1] == true) {
+          newArr[i][j] += 1;
+        console.log(`newArr1 ${newArr}`);
+        };
+        if (i<matrix.length-1 && matrix[i+1][j] == true) {
+          newArr[i][j] += 1;
+          console.log(`newArr1 ${newArr}`);
+        };
+        if (i<matrix.length-1 && j < matrix.length-1 && matrix[i+1][j+1] == true) {
+          newArr[i][j] += 1;
+        console.log(`newArr1 ${newArr}`);
+        };
+      }
+
+    }
+    console.log(`newArr9 ${newArr}`);
+       return newArr;
+   }
 
 module.exports = {
   minesweeper
